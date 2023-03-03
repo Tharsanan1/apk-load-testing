@@ -93,20 +93,15 @@ echo "Users per server: ${user_count_per_server}"
 
 set -x
 cd "${HOME}/apache-jmeter-5.5/bin"
-./jmeter -n -t ${HOME}/apim-test.jmx \
+./jmeter -n -t jmeter/apk-test.jmx \
     -j "${results_dir}/jmeter.log" \
-    -Gusers="$user_count_per_server" \
-    -Gduration="$duration" \
-    -Ghost="$ingress_host" \
-    -GhostHeader=gw.wso2.com \
-    -Gport=443 \
-    -Gpath=/echo/1.0.0 \
-    -Gpayload="${HOME}/${payload_size}.json" \
-    -Gresponse_size="$payload_size" \
-    -Gprotocol=https \
-    -Gtokens="${HOME}/jwt-tokens-${user_count}.csv" \
-    -l "${results_dir}/results.jtl" \
-    -R "${jmeter_servers}"
+    -Jusers="$user_count_per_server" \
+    -Jduration="$duration" \
+    -Jipaddress="20.198.205.230" \
+    -Jport=9095 \
+    -Jpayload="payloads/${payload_size}.json" \
+    -Jresponse_size="$payload_size" \
+    -l "${results_dir}/results.jtl"
 set +x
 
 cd "$results_dir"

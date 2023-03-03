@@ -17,15 +17,15 @@ spec:
           image: renukafernando/netty-http-echo-service:0.4.6-ubuntu-java8
           args:
             - "-m"
-            - "4g"
+            - "1g"
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              memory: "4096Mi"
-              cpu: "2000m"
+              memory: "2Gi"
+              cpu: "1500m"
             limits:
-              memory: "6114Mi"
-              cpu: "2000m"
+              memory: "2Gi"
+              cpu: "1500m"
           ports:
             - containerPort: 8688
           livenessProbe:
@@ -44,15 +44,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: netty-backend
-  name: netty-backend
+    app: backend
+  name: backend
 spec:
   type: NodePort
   selector:
     app: netty-backend
   ports:
     - name: http
-      port: 8688
+      port: 80
       targetPort: 8688
       protocol: TCP
-      nodePort: 30500
