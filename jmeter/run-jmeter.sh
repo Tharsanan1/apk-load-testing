@@ -5,7 +5,7 @@ user_count=10
 payload_size=50B
 duration=1200
 ingress_host=
-jmeter_servers=""
+jmeter_servers="10.0.0.6,10.0.0.5"
 results_dir=""
 
 function usage() {
@@ -95,12 +95,12 @@ set -x
 cd "${HOME}/apache-jmeter-5.5/bin"
 ./jmeter -n -t jmeter/apk-test.jmx \
     -j "${results_dir}/jmeter.log" \
-    -Jusers="$user_count_per_server" \
-    -Jduration="$duration" \
-    -Jipaddress="20.198.205.230" \
-    -Jport=9095 \
-    -Jpayload="payloads/${payload_size}.json" \
-    -Jresponse_size="$payload_size" \
+    -Gusers="$user_count_per_server" \
+    -Gduration="$duration" \
+    -Gipaddress="20.198.205.230" \
+    -Gport=9095 \
+    -Gpayload="payloads/${payload_size}.json" \
+    -Gresponse_size="$payload_size" \
     -l "${results_dir}/results.jtl"
 set +x
 
