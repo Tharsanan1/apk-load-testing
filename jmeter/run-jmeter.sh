@@ -85,7 +85,7 @@ echo "Heap: ${heap_size}"
 echo "Users: ${user_count}"
 echo "Payload: ${payload_size}"
 echo "Results Dir: ${results_dir}"
-echo "Duration: ${duration}"
+
 export HEAP="-Xms${heap_size} -Xmx${heap_size}"
 
 user_count_per_server=$(($user_count / 2))
@@ -93,20 +93,20 @@ echo "Users per server: ${user_count_per_server}"
 
 set -x
 cd "${HOME}/apache-jmeter-5.5/bin"
-./jmeter -n -t /home/tharsanan/Documents/apk-load-testing/jmeter/apk-test.jmx \
+./jmeter -n -t apk-test.jmx \
     -j "${results_dir}/jmeter.log" \
     -Gusers="$user_count_per_server" \
-    -Gduration1="$duration" \
+    -Gduration="$duration" \
     -Gipaddress="10.0.0.7" \
     -Gport=9095 \
     -Gpayload="payloads/${payload_size}.json" \
     -Gresponse_size="$payload_size" \
     -l "${results_dir}/results.jtl" \
-    #-R "${jmeter_servers}"
+    -R "${jmeter_servers}"
 set +x
 
 cd "$results_dir"
-java -jar /home/tharsanan/Documents/apk-load-testing/jtl-splitter/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t 5
+java -jar ~/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t 5
 
 tar -czf results.jtl.gz results.jtl
 rm results.jtl
