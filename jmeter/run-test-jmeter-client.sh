@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
@@ -64,7 +65,7 @@ for user_count in "${user_counts_array[@]}"; do
         mkdir -p "${results_dir}"
         echo ""
 
-        ./redeploy-cc.sh
+        # ./redeploy-cc.sh
         kubectl top po --containers -A > "${results_dir}/resources-start.txt"
         kubectl get po -owide -A > "${results_dir}/pods-distribution.txt"
         nohup sh -c "sleep 300 && kubectl top po --containers -A > ${results_dir}/resources-5min.txt" >/dev/null &
