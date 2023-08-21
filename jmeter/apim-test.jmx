@@ -59,8 +59,8 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="${__P(payload,home/azureuser/apk-load-testing/payloads/50B.json)}" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__P(payload,home/azureuser/apk-load-testing/payloads/50B.json)}</stringProp>
+              <elementProp name="${__P(payload_path,home/azureuser/apk-load-testing/payloads/50B.json)}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${__P(payload_path,home/azureuser/apk-load-testing/payloads/50B.json)}</stringProp>
                 <stringProp name="File.paramname"></stringProp>
                 <stringProp name="File.mimetype">application/octet-stream</stringProp>
               </elementProp>

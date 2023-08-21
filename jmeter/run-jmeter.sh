@@ -101,7 +101,7 @@ cd "${HOME}/apache-jmeter-5.5/bin"
     -Gipaddress="10.0.0.7" \
     -Gport=9095 \
     -l "${results_dir}/results.jtl"  \
-    -Gpayload="home/azureuser/apk-load-testing/payloads/${payload_size}.json" \
+    -Gpayload_path="home/azureuser/apk-load-testing/payloads/${payload_size}.json" \
     -Gresponse_size="$payload_size" \
     -R "${jmeter_servers}"
 set +x
