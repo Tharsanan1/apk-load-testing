@@ -101,7 +101,7 @@ cd "${HOME}/apache-jmeter-5.5/bin"
     -Jpayload_path="../payloads/${payload_size}.json" \
     -Jresponse_size="$payload_size" \
     -l "${results_dir}/results.jtl"  \
-    # -R "${jmeter_servers}"
+    -R "${jmeter_servers}"
 set +x
 
 cd "$results_dir"
