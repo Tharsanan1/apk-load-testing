@@ -98,7 +98,7 @@ cd "${HOME}/apache-jmeter-5.5/bin"
     -j "${results_dir}/jmeter.log" \
     -Gusers="$user_count_per_server" \
     -Gduration="$duration" \
-    -Gpayload_path="../payloads/${payload_size}.json" \
+    -Gpayload_path="payloads/${payload_size}.json" \
     -Gresponse_size="$payload_size" \
     -l "${results_dir}/results.jtl"  \
     -R "${jmeter_servers}"
