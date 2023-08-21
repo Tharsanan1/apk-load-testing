@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 set -e
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir

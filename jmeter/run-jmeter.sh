@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 
 heap_size="1g"
