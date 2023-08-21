@@ -24,7 +24,7 @@ function usage() {
     echo ""
 }
 
-while getopts "n:r:i:h" opts; do
+while getopts "n:r:i:d:h" opts; do
     case $opts in
     n)
         test_name=${OPTARG}
@@ -34,6 +34,9 @@ while getopts "n:r:i:h" opts; do
         ;;
     i)
         ingress_host=${OPTARG}
+        ;;
+    d)
+        duration=${OPTARG}
         ;;
     h)
         usage
@@ -67,26 +70,26 @@ for user_count in "${user_counts_array[@]}"; do
         # ./redeploy-cc.sh
         kubectl top po --containers -A > "${results_dir}/resources-start.txt"
         kubectl get po -owide -A > "${results_dir}/pods-distribution.txt"
-        nohup sh -c "sleep 300 && kubectl top po --containers -A > ${results_dir}/resources-5min.txt" >/dev/null &
-        nohup sh -c "sleep 600 && kubectl top po --containers -A > ${results_dir}/resources-10min.txt" >/dev/null &
-        nohup sh -c "sleep 900 && kubectl top po --containers -A > ${results_dir}/resources-15min.txt" >/dev/null &
+        nohup sh -c "sleep ${duration/4} && kubectl top po --containers -A > ${results_dir}/resources-${duration/4/60}min.txt" >/dev/null &
+        nohup sh -c "sleep ${duration/2} && kubectl top po --containers -A > ${results_dir}/resources-${duration/2/60}min.txt" >/dev/null &
+        nohup sh -c "sleep ${duration*3/4} && kubectl top po --containers -A > ${results_dir}/resources-${duration*3/4/60}min.txt" >/dev/null &
 
         ./run-jmeter.sh -m "$heap_size" -u "$user_count" -p "$payload_size" -d "$duration" -i "$ingress_host" -s "$remote_hosts" -r "$results_dir"
 
         kubectl top po --containers -A >"${results_dir}/resources-end.txt"
 
-        echo ""
-        echo ""
-        echo "Resources"
-        echo ""
-        echo "Start"
-        cat "${results_dir}/resources-start.txt"
-        echo ""
-        echo "10 min"
-        cat "${results_dir}/resources-10min.txt"
-        echo ""
-        echo "End"
-        cat "${results_dir}/resources-end.txt"
+        # echo ""
+        # echo ""
+        # echo "Resources"
+        # echo ""
+        # echo "Start"
+        # cat "${results_dir}/resources-start.txt"
+        # echo ""
+        # echo "10 min"
+        # cat "${results_dir}/resources-10min.txt"
+        # echo ""
+        # echo "End"
+        # cat "${results_dir}/resources-end.txt"
 
         echo "################################ End Test ################################"
     done
