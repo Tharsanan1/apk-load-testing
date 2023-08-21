@@ -92,23 +92,22 @@ user_count_per_server=$(($user_count / 2))
 echo "Users per server: ${user_count_per_server}"
 
 set -x
-cd "/home/tharsanan/Software/apache-jmeter-5.5/bin"
-# cd "${HOME}/apache-jmeter-5.5/bin"
-./jmeter -n -t /home/tharsanan/Documents/perf-test/apk-load-testing/jmeter/apim-test.jmx \
+# cd "/home/tharsanan/Software/apache-jmeter-5.5/bin"
+cd "${HOME}/apache-jmeter-5.5/bin"
+./jmeter -n -t ${HOME}/apk-load-testing/jmeter/apim-test.jmx \
     -j "${results_dir}/jmeter.log" \
     -Gusers="$user_count_per_server" \
     -Gduration="$duration" \
     -Gipaddress="10.0.0.7" \
     -Gport=9095 \
-    -l "${results_dir}/results.jtl" 
-    # -Gpayload="payloads/${payload_size}.json" \
-    # -Gresponse_size="$payload_size" \
-    
-    # -R "${jmeter_servers}"
+    -l "${results_dir}/results.jtl"  \
+    -Gpayload="home/azureuser/apk-load-testing/payloads/${payload_size}.json" \
+    -Gresponse_size="$payload_size" \
+    -R "${jmeter_servers}"
 set +x
 
 cd "$results_dir"
-java -jar /home/tharsanan/Documents/perf-test/apk-load-testing/jtl-splitter/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t 5
+java -jar$ {HOME}/apk-load-testing/jtl-splitter/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t 5
 
 tar -czf results.jtl.gz results.jtl
 rm results.jtl
