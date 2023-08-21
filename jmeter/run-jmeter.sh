@@ -96,10 +96,10 @@ set -x
 cd "${HOME}/apache-jmeter-5.5/bin"
 ./jmeter -n -t ${HOME}/apk-load-testing/jmeter/apim-test.jmx \
     -j "${results_dir}/jmeter.log" \
-    -Gusers="$user_count_per_server" \
-    -Gduration="$duration" \
-    -Gpayload_path="home/azureuser/apk-load-testing/payloads/${payload_size}.json" \
-    -Gresponse_size="$payload_size" \
+    -Jusers="$user_count_per_server" \
+    -Jduration="$duration" \
+    -Jpayload_path="../payloads/${payload_size}.json" \
+    -Jresponse_size="$payload_size" \
     -l "${results_dir}/results.jtl"  \
     -R "${jmeter_servers}"
 set +x
