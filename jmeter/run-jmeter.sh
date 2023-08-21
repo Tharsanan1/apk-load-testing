@@ -90,7 +90,7 @@ export HEAP="-Xms${heap_size} -Xmx${heap_size}"
 
 user_count_per_server=$(($user_count / 2))
 echo "Users per server: ${user_count_per_server}"
-
+echo "${duration}"
 set -x
 # cd "/home/tharsanan/Software/apache-jmeter-5.5/bin"
 cd "${HOME}/apache-jmeter-5.5/bin"
@@ -98,11 +98,9 @@ cd "${HOME}/apache-jmeter-5.5/bin"
     -j "${results_dir}/jmeter.log" \
     -Gusers="$user_count_per_server" \
     -Gduration="$duration" \
-    -Gipaddress="10.0.0.7" \
-    -Gport=9095 \
-    -l "${results_dir}/results.jtl"  \
     -Gpayload_path="home/azureuser/apk-load-testing/payloads/${payload_size}.json" \
     -Gresponse_size="$payload_size" \
+    -l "${results_dir}/results.jtl"  \
     -R "${jmeter_servers}"
 set +x
 
