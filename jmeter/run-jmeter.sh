@@ -105,7 +105,8 @@ cd "${HOME}/apache-jmeter-5.5/bin"
 set +x
 
 cd "$results_dir"
-java -jar ${HOME}/apk-load-testing/jtl-splitter/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t $duration/60/4
+devideMin=$((duration/4/60))
+java -jar ${HOME}/apk-load-testing/jtl-splitter/jtl-splitter-0.4.6-SNAPSHOT.jar -f results.jtl -p -s -u MINUTES -t $devideMin
 
 tar -czf results.jtl.gz results.jtl
 rm results.jtl
