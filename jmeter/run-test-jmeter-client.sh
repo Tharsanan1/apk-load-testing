@@ -82,12 +82,13 @@ for user_count in "${user_counts_array[@]}"; do
         nohup sh -c "sleep $((duration*3/4)) && kubectl top po --containers -A > ${results_dir}/resources-$((duration*3/4/60))min.txt" >/dev/null &
         
         pod_name=$(kubectl get pods -n apk-perf-test -l app.kubernetes.io/app=router -o jsonpath='{.items[0].metadata.name}')
-        nohup kubectl -n apk-perf-test logs $pod_name -c enforcer --since 1s -f > ${results_dir}/enforcer.log  >/dev/null &
+        nohup sh -c "kubectl -n apk-perf-test logs $pod_name -c enforcer --since 1s -f > ${results_dir}/enforcer.log"  >/dev/null &
         enforcer_log_pid=$!
         nohup sh -c "sleep $duration && kill -9 $enforcer_log_pid" &
-        nohup kubectl -n apk-perf-test logs $pod_name -c router --since 1s -f > ${results_dir}/router.log  >/dev/null &
+        nohup sh -c "kubectl -n apk-perf-test logs $pod_name -c router --since 1s -f > ${results_dir}/router.log"  >/dev/null &
         router_log_pid=$!
         nohup sh -c "sleep $duration && kill -9 $router_log_pid" &
+        echo echo "Process ids: $enforcer_log_pid, $router_log_pid"
 
         ./run-jmeter.sh -m "$heap_size" -u "$user_count" -p "$payload_size" -d "$duration" -i "$ingress_host" -s "$remote_hosts" -r "$results_dir"
 
