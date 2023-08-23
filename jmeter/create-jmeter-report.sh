@@ -61,7 +61,7 @@ if [[ -z $remote_hosts ]]; then
     exit 1
 fi
 
-mkdir "${HOME}/reports/"
+mkdir -p "${HOME}/reports/"
 
 # Run Test
 for user_count in "${user_counts_array[@]}"; do
