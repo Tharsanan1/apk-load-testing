@@ -74,7 +74,7 @@ for user_count in "${user_counts_array[@]}"; do
         echo "Results Dir: ${results_dir}"
         cd $results_dir
         tar -xzf results.jtl.gz
-        jmeter -g results.jtl -o "${test_name}-passthrough-${heap_size}_heap-${user_count}_users-${payload_size}-0ms_sleep"
+        jmeter -g results.jtl -o "${HOME}/reports/${test_name}-passthrough-${heap_size}_heap-${user_count}_users-${payload_size}-0ms_sleep"
         echo "################################ End report creation ################################"
     done
 done
