@@ -28,7 +28,7 @@ def read_resource_usage(filename):
             _, _, name, cpu, memory = row.split()
             rows_dict[name] = {'cpu': cpu, 'memory': memory}
 
-        names = ["choreo-connect-adapter", "choreo-connect-enforcer", "choreo-connect-router", "controller"]
+        names = ["adapter", "enforcer", "router"]
         row = []
         for name in names:
             row.append(rows_dict[name]['cpu'])
