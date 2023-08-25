@@ -12,6 +12,7 @@ spec:
   services:
   - host: "backend"
     port: 80
+  basePath: "/anything"
   protocol: "http"
 ---
 apiVersion: apps/v1
@@ -37,11 +38,11 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              memory: "2Gi"
-              cpu: "1500m"
+              memory: "4096Mi"
+              cpu: "2000m"
             limits:
-              memory: "2Gi"
-              cpu: "1500m"
+              memory: "6114Mi"
+              cpu: "2000m"
           ports:
             - containerPort: 8688
           livenessProbe:

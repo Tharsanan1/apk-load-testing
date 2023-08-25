@@ -21,4 +21,5 @@ spec:
   - httpRouteRefs:
     - "01ee3d7a-36d0-176e-aee2-6b601948eb64"
   sandbox: null
+  apiProperties: []
 status: null

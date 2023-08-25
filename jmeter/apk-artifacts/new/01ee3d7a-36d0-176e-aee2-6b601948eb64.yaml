@@ -15,7 +15,7 @@ spec:
   - matches:
     - path:
         type: "RegularExpression"
-        value: "/test-definition-default/3.14/employee"
+        value: "/employee"
       method: "GET"
     filters:
     - type: "URLRewrite"
@@ -23,6 +23,51 @@ spec:
         path:
           type: "ReplaceFullPath"
           replaceFullPath: "/employee"
+    backendRefs:
+    - group: "dp.wso2.com"
+      kind: "Backend"
+      name: "backend-65bb2c47600834c7bb4b8a405b1cfe3921fc7d74-api"
+  - matches:
+    - path:
+        type: "RegularExpression"
+        value: "/employee"
+      method: "POST"
+    filters:
+    - type: "URLRewrite"
+      urlRewrite:
+        path:
+          type: "ReplaceFullPath"
+          replaceFullPath: "/employee"
+    backendRefs:
+    - group: "dp.wso2.com"
+      kind: "Backend"
+      name: "backend-65bb2c47600834c7bb4b8a405b1cfe3921fc7d74-api"
+  - matches:
+    - path:
+        type: "RegularExpression"
+        value: "/employee/(.*)"
+      method: "PUT"
+    filters:
+    - type: "URLRewrite"
+      urlRewrite:
+        path:
+          type: "ReplaceFullPath"
+          replaceFullPath: "/employee/\\1"
+    backendRefs:
+    - group: "dp.wso2.com"
+      kind: "Backend"
+      name: "backend-65bb2c47600834c7bb4b8a405b1cfe3921fc7d74-api"
+  - matches:
+    - path:
+        type: "RegularExpression"
+        value: "/employee/(.*)"
+      method: "DELETE"
+    filters:
+    - type: "URLRewrite"
+      urlRewrite:
+        path:
+          type: "ReplaceFullPath"
+          replaceFullPath: "/employee/\\1"
     backendRefs:
     - group: "dp.wso2.com"
       kind: "Backend"
