@@ -84,7 +84,7 @@ for user_count in "${user_counts_array[@]}"; do
 
         
 
-        pod_name=$(kubectl get pods -n apk-perf-test -l app.kubernetes.io/app=router -o jsonpath='{.items[0].metadata.name}')
+        pod_name=$(kubectl get pods -n apk-perf-test -l app.kubernetes.io/app=gateway -o jsonpath='{.items[0].metadata.name}')
         nohup sh -c "kubectl -n apk-perf-test logs $pod_name -c enforcer --since 1s -f > ${results_dir}/enforcer.log"  >/dev/null &
         enforcer_log_pid=$!
         nohup sh -c "echo "Killing enforcer log process" && sleep $duration && kill -9 $enforcer_log_pid" &
