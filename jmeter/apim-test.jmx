@@ -27,8 +27,8 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Tokens" enabled="false">
-          <stringProp name="filename">${__P(tokens,/home/azureuser/apk-load-testing/jwt-tokens/target/jwt-tokens-5000.csv)}</stringProp>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Tokens" enabled="true">
+          <stringProp name="filename">${__P(tokens,/home/azureuser/apk-load-testing/jwt-tokens/target/jwt-tokens-500.csv)}</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">token</stringProp>
           <stringProp name="delimiter">,</stringProp>
@@ -43,7 +43,7 @@
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Authorization</stringProp>
-              <stringProp name="Header.value">Bearer eyJ4NXQiOiJOMkpqTWpOaU0yRXhZalJrTnpaalptWTFZVEF4Tm1GbE5qZzRPV1UxWVdRMll6YzFObVk1TlEiLCJraWQiOiJNREpsTmpJeE4yRTFPR1psT0dWbU1HUXhPVEZsTXpCbU5tRmpaalEwWTJZd09HWTBOMkkwWXpFNFl6WmpOalJoWW1SbU1tUTBPRGRpTkRoak1HRXdNQV9SUzI1NiIsImFsZyI6IlJTMjU2In0=.eyJhdWQiOiIxMjM0NTYiLCJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJuYmYiOjE2OTI2MDE0NDksImF6cCI6IjEyMzQ1NiIsInNjb3BlIjoiYW1fYXBwbGljYXRpb25fc2NvcGUgZGVmYXVsdCIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0Ojk0NDMvb2F1dGgyL3Rva2VuIiwia2V5dHlwZSI6IlBST0RVQ1RJT04iLCJleHAiOjE3MjQxMzc0NDksImlhdCI6MTY5MjYwMTQ0OSwianRpIjoiZjhkODJhODctYTQ1MS00NGE1LThmOWQtZTQ2Nzk0YTBmNmE5In0=.ch12vxyzxuYh9Pu-l-koX3YNfLwIYNEa7n7XQTNI06t-heWKSg-VpTA5Ue36wDV9w8pmHQTAXBLxyedJvZyCYQxNRHMoL802a0k6q_4tbMIhMvpI9T9DQKPZ9tx_1L5bllQvAwjj8QQd-xUE-cOMkLD_5_0WaNT9wR6z1ujrcVg8em3Jtqt7oPNIBwLYu8KBHfKLNiAPVRYgGGJN8oE-P9cx2cpnPMrysi7m5k-yP9jAyLLTQHypmpqWtSkZm75HtHBib_MgYru_9G3YBW_DAd1jwsFIVXoyPBN1fWkYpnnJIyOpzRu465yzGM4hvT_yEsF7b3xxK7gJm6g7n2HCtQ==</stringProp>
+              <stringProp name="Header.value">Bearer ${token}</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
